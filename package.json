@@ -1,0 +1,29 @@
+{
+  "name": "js-crypto-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lukas220300/js-crypto-core.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "crypto",
+    "encryption",
+    "decryption",
+    "aes",
+    "rsa",
+    "ecdh",
+    "pbkdf2"
+  ],
+  "author": "Lukas Schönbeck",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Lukas220300/js-crypto-core/issues"
+  },
+  "homepage": "https://github.com/Lukas220300/js-crypto-core#readme"
+}
