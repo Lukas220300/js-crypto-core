@@ -39,4 +39,15 @@ export class PBKDF2 extends AbstractPBKDF2CryptoType{
             ["deriveBits", "deriveKey"]
         )
     }
+
+    importKey(keyData: ArrayBuffer | Uint8Array | JsonWebKey, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
+        return this.getSubtle().importKey(
+            format,
+            keyData,
+            'AES-GCM',
+            extractable,
+            ["encrypt", "decrypt"]
+        )
+    }
+
 }
