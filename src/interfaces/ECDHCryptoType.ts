@@ -1,6 +1,6 @@
-import {AsymmetricCryptoType} from "./AsymmetricCryptoType";
+import {CryptoType} from "./CryptoType";
 
-export interface ECDHCryptoType extends AsymmetricCryptoType {
+export interface ECDHCryptoType extends CryptoType {
     generateNewKePair(): Promise<CryptoKeyPair>
     generateSharedSecret(alicePrivateKey: CryptoKey, bobPublicKey): Promise<CryptoKey>
     generateNewInitializeVector(): Uint8Array
