@@ -1,9 +1,10 @@
 import {AbstractAsymmetricCryptoType} from "./abstract/AbstractAsymmetricCryptoType";
 
-export class RSA extends AbstractAsymmetricCryptoType{
+export class RSA extends AbstractAsymmetricCryptoType {
 
     readonly algorithmIdentifier: RsaHashedKeyGenParams
     readonly enDeCryptionAlgorithmIdentifier: RsaOaepParams
+    readonly importAlgorithmParams: RsaHashedImportParams
 
     public constructor() {
         super();
@@ -15,6 +16,10 @@ export class RSA extends AbstractAsymmetricCryptoType{
         }
         this.enDeCryptionAlgorithmIdentifier = {
             name: 'RSA-OAEP'
+        }
+        this.importAlgorithmParams = {
+            name: 'RSA-OAEP',
+            hash: 'SHA-512',
         }
     }
 
@@ -39,6 +44,16 @@ export class RSA extends AbstractAsymmetricCryptoType{
             this.enDeCryptionAlgorithmIdentifier,
             key,
             encodedMessage
+        )
+    }
+
+    importKey(format: string, keyData: ArrayBuffer | Uint8Array | JsonWebKey, privateKey: boolean, algorithm: RsaHashedImportParams, extractable: boolean = true): Promise<CryptoKey> {
+        return this.getSubtle().importKey(
+            format,
+            keyData,
+            this.importAlgorithmParams,
+            extractable,
+            privateKey ? ['decrypt'] : ['encrypt']
         )
     }
 

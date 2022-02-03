@@ -8,4 +8,9 @@ export abstract class AbstractCryptoType implements CryptoType {
     getNewRandomValueArray(length: number): Uint8Array {
         return window.crypto.getRandomValues(new Uint8Array(length))
     }
+
+    exportKey(format: string = 'jwk', key: CryptoKey): Promise<JsonWebKey> | Promise<ArrayBuffer> {
+        // @ts-ignore
+        return this.getSubtle().exportKey(format, key);
+    }
 }
