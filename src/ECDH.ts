@@ -4,6 +4,7 @@ export class ECDH extends AbstractECDHCryptoType {
 
     readonly algorithmIdentifier: EcKeyGenParams
     readonly derivedKeyType: AesKeyGenParams
+    readonly importAlgorithmParams: EcKeyImportParams
 
     public constructor() {
         super();
@@ -14,6 +15,10 @@ export class ECDH extends AbstractECDHCryptoType {
         this.derivedKeyType = {
             name: 'AES-GCM',
             length: 256
+        }
+        this.importAlgorithmParams = {
+            name: 'ECDH',
+            namedCurve: 'P-384'
         }
     }
 
@@ -60,5 +65,24 @@ export class ECDH extends AbstractECDHCryptoType {
         )
     }
 
+    importKeyFordDrive(keyData: ArrayBuffer | Uint8Array | JsonWebKey, privateKey: boolean, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
+        return this.getSubtle().importKey(
+            format,
+            keyData,
+            this.importAlgorithmParams,
+            extractable,
+            privateKey ? ['decrypt'] : ['encrypt']
+        )
+    }
+
+    importSharedSecret(keyData: ArrayBuffer | Uint8Array | JsonWebKey, format: string = 'jwk', extractable: boolean = true):Promise<CryptoKey> {
+        return this.getSubtle().importKey(
+            format,
+            keyData,
+            'AES-GCM',
+            extractable,
+            ["encrypt", "decrypt"]
+        )
+    }
 
 }
