@@ -71,7 +71,7 @@ export class ECDH extends AbstractECDHCryptoType {
             keyData,
             this.importAlgorithmParams,
             extractable,
-            privateKey ? ['decrypt'] : ['encrypt']
+            privateKey ? ['deriveKey'] : []
         )
     }
 
