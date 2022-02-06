@@ -23,6 +23,7 @@ export class RSA extends AbstractAsymmetricCryptoType {
         }
     }
 
+    // todo fix name
     generateNewKePair(extractable: boolean = true): Promise<CryptoKeyPair> {
         return this.getSubtle().generateKey(
             this.algorithmIdentifier,
