@@ -24,7 +24,8 @@ export class AES extends AbstractSymmetricCryptoType {
         return this.getSubtle().decrypt(
             {
                 name: 'AES-GCM',
-                iv
+                iv,
+                additionalData: new Uint8Array([3,45,2,3,1,2])
             },
             key,
             cipher
@@ -35,7 +36,8 @@ export class AES extends AbstractSymmetricCryptoType {
         return this.getSubtle().encrypt(
             {
                 name: 'AES-GCM',
-                iv
+                iv,
+                additionalData: new Uint8Array([3,45,2,3,1,2])
             },
             key,
             encodedMessage
