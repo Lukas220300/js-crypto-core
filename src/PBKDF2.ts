@@ -32,6 +32,7 @@ export class PBKDF2 extends AbstractPBKDF2CryptoType{
 
     private getKeyMaterial(format: string, encodedPassword: Uint8Array, algorithm: string): Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             encodedPassword,
             algorithm,
@@ -42,6 +43,7 @@ export class PBKDF2 extends AbstractPBKDF2CryptoType{
 
     importKey(keyData: ArrayBuffer | Uint8Array | JsonWebKey, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             keyData,
             'AES-GCM',

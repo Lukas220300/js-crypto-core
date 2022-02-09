@@ -30,7 +30,7 @@ export class ECDH extends AbstractECDHCryptoType {
         )
     }
 
-    generateSharedSecret(alicePrivateKey: CryptoKey, bobPublicKey, extractable: boolean = true): Promise<CryptoKey> {
+    generateSharedSecret(alicePrivateKey: CryptoKey, bobPublicKey: CryptoKey, extractable: boolean = true): Promise<CryptoKey> {
         return this.getSubtle().deriveKey(
             {
                 name: 'ECDH',
@@ -67,6 +67,7 @@ export class ECDH extends AbstractECDHCryptoType {
 
     importKeyFordDrive(keyData: ArrayBuffer | Uint8Array | JsonWebKey, privateKey: boolean, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             keyData,
             this.importAlgorithmParams,
@@ -77,6 +78,7 @@ export class ECDH extends AbstractECDHCryptoType {
 
     importSharedSecret(keyData: ArrayBuffer | Uint8Array | JsonWebKey, format: string = 'jwk', extractable: boolean = true):Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             keyData,
             'AES-GCM',

@@ -46,6 +46,7 @@ export class AES extends AbstractSymmetricCryptoType {
 
     importKey(keyData: ArrayBuffer | Uint8Array | JsonWebKey, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             keyData,
             'AES-GCM',

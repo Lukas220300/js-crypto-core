@@ -50,6 +50,7 @@ export class RSA extends AbstractAsymmetricCryptoType {
 
     importKey(keyData: ArrayBuffer | Uint8Array | JsonWebKey, privateKey: boolean, format: string = 'jwk', extractable: boolean = true): Promise<CryptoKey> {
         return this.getSubtle().importKey(
+            // @ts-ignore
             format,
             keyData,
             this.importAlgorithmParams,
